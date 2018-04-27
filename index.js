@@ -27,7 +27,13 @@ commander
     'serverless.env.yml'
   )
   .option('--env-variables [filename|string]', 'Set the serverless env file')
+  .option('--local, -l', 'Use .env file')
   .parse(process.argv);
+
+// Use local ENV
+if (commander.local) {
+  require('dotenv').load();
+}
 
 // Name of the ENV storage file
 const serverlessEnvFile = commander.serverlessEnvFile;
@@ -65,9 +71,10 @@ for (let i = 0; i < availableEnvs.length; i += 1) {
 
 // Populate from ENV variables
 Object.keys(envVariables[STAGE]).map(key => {
-  if (process.env[key] || process.env[`${STAGE}-${key}`]) {
-    envVariables[STAGE][key] = process.env[`${STAGE}-${key}`]
-      ? process.env[`${STAGE}-${key}`]
+  const stageKey = `${STAGE}_${key}`.toUpperCase();
+  if (process.env[key] || process.env[stageKey]) {
+    envVariables[STAGE][key] = process.env[stageKey]
+      ? process.env[stageKey]
       : process.env[key];
   }
   return true;

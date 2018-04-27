@@ -1,6 +1,6 @@
 {
   "name": "@packt/serverless-env-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description":
     "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
   "main": "index.js",
@@ -12,12 +12,22 @@
     "url":
       "git+ssh://git@bitbucket.org/packt-internal/serverless-env-generator.git"
   },
-  "author": "Packt Publishing Ltd <https://www.packtpub.com>",
+  "author": {
+    "name": "Packt Publishing Ltd",
+    "url": "https://packtpub.com/"
+  },
+  "contributors": [
+    {
+      "name": "Mike Elsmore",
+      "email": "mike@builtbyme.tech"
+    }
+  ],
   "license": "Apache-2.0",
   "homepage":
     "https://bitbucket.org/packt-internal/serverless-env-generator#readme",
   "dependencies": {
     "commander": "^2.15.1",
+    "dotenv": "^5.0.1",
     "yamljs": "^0.3.0"
   },
   "bin": {
