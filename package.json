@@ -1,16 +1,15 @@
 {
   "name": "@packt/serverless-env-generator",
   "version": "0.0.2",
-  "description":
-    "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
+  "description": "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
-    "url":
-      "git+ssh://git@bitbucket.org/packt-internal/serverless-env-generator.git"
+    "url": "git@github.com:PacktDev/serverless-env-generator.git"
   },
   "author": {
     "name": "Packt Publishing Ltd",
@@ -23,8 +22,7 @@
     }
   ],
   "license": "Apache-2.0",
-  "homepage":
-    "https://bitbucket.org/packt-internal/serverless-env-generator#readme",
+  "homepage": "https://github.com/PacktDev/serverless-env-generator",
   "dependencies": {
     "commander": "^2.15.1",
     "dotenv": "^5.0.1",
@@ -32,5 +30,10 @@
   },
   "bin": {
     "serverless-env-generator": "index.js"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
   }
 }
