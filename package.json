@@ -25,7 +25,7 @@
   "homepage": "https://github.com/PacktDev/serverless-env-generator",
   "dependencies": {
     "commander": "^2.15.1",
-    "dotenv": "^5.0.1",
+    "dotenv": "^8.0.0",
     "yamljs": "^0.3.0"
   },
   "bin": {
