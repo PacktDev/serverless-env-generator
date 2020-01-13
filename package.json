@@ -1,6 +1,6 @@
 {
   "name": "@packt/serverless-env-generator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
   "main": "index.js",
   "scripts": {
