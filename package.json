@@ -4,7 +4,7 @@
   "description": "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint",
+    "test": "node index.js --env-variables=serverless-envs.json -l",
     "lint": "eslint ./"
   },
   "repository": {
@@ -19,6 +19,10 @@
     {
       "name": "Mike Elsmore",
       "email": "mike@builtbyme.tech"
+    },
+    {
+      "name": "Chris Key",
+      "email": "keych.ck+github@gmail.com"
     }
   ],
   "license": "Apache-2.0",
