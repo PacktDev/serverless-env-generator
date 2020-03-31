@@ -1,10 +1,10 @@
 {
   "name": "@packt/serverless-env-generator",
-  "version": "0.0.2",
+  "version": "1.1.0",
   "description": "Generate serverless.env.yml for dynamic ENV assignments within serverless.yml",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint",
+    "test": "node index.js --env-variables=serverless-envs.json -l",
     "lint": "eslint ./"
   },
   "repository": {
@@ -19,6 +19,10 @@
     {
       "name": "Mike Elsmore",
       "email": "mike@builtbyme.tech"
+    },
+    {
+      "name": "Chris Key",
+      "email": "keych.ck+github@gmail.com"
     }
   ],
   "license": "Apache-2.0",
@@ -26,7 +30,9 @@
   "dependencies": {
     "commander": "^2.15.1",
     "dotenv": "^8.0.0",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "debug": "^4.1.1",
+    "fs-extra": "8.1.0"
   },
   "bin": {
     "serverless-env-generator": "index.js"
