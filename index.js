@@ -73,8 +73,9 @@ const loadFile = (filename) => {
     .parse(process.argv);
 
   // Use local ENV
-  if (commander.local) {
-    require('dotenv').load();
+  if (commander.local || commander.L) {
+    log('Getting from .env');
+    require('dotenv').config();
   }
 
   // log('commander: %O', commander);
@@ -115,7 +116,7 @@ const loadFile = (filename) => {
     ? await loadFile(serverlessEnvFile)
     : {};
 
-  log('current env: %O', envVariables);
+  log('previous env: %O', envVariables);
 
   // If the STAGE doesn't exist, create it
   if (!commander.D && !envVariables[STAGE]) {
@@ -161,6 +162,8 @@ const loadFile = (filename) => {
       return true;
     });
   }
+
+  log('new env: %O', envVariables);
 
   // Convert the object into YAML
   if (!commander.D) {
