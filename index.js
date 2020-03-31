@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 #!/usr/bin/env node
 // Copyright 2019 Packt Publishing Limited
 //
