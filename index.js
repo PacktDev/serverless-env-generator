@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 #!/usr/bin/env node
 // Copyright 2019 Packt Publishing Limited
 //
@@ -30,8 +31,9 @@ const loadDotEnv = async (filename) => {
   const result = {};
   asString
     .split('\n')
-    .forEach(record => {
+    .forEach((record) => {
       const split = record.split('=');
+      // eslint-disable-next-line prefer-destructuring
       if (split && split[0] && split[1]) result[split[0]] = split[1];
     });
 
@@ -40,8 +42,8 @@ const loadDotEnv = async (filename) => {
 
 const buildEnvFile = (envVariables) => {
   let file = '';
-  const result = Object.keys(envVariables)
-    .forEach(key => {
+  Object.keys(envVariables)
+    .forEach((key) => {
       const value = envVariables[key];
 
       file += `${key}=${value}\n`;
@@ -64,7 +66,7 @@ const loadFile = (filename) => {
     .option(
       '--serverless-env-file [filename]',
       'Set the serverless env file',
-      'serverless.env.yml'
+      'serverless.env.yml',
     )
     .option('--env-variables [filename|string]', 'Set the serverless env file')
     .option('--local, -l', 'Use .env file')
@@ -94,7 +96,7 @@ const loadFile = (filename) => {
   // The ENV variables
   if (!commander.envVariables) {
     console.log(
-      'Please provide --env-variables either file containing an array of ENV variable names or a comma (,) separated list of ENV variable names'
+      'Please provide --env-variables either file containing an array of ENV variable names or a comma (,) separated list of ENV variable names',
     );
     process.exit(1);
   }
@@ -122,7 +124,7 @@ const loadFile = (filename) => {
   }
 
   // Populate with blank variables for anything not already defined
-  if(!commander.D) {
+  if (!commander.D) {
     for (let i = 0; i < availableEnvs.length; i += 1) {
       if (!envVariables[STAGE][availableEnvs[i]]) {
         envVariables[STAGE][availableEnvs[i]] = '';
@@ -137,24 +139,26 @@ const loadFile = (filename) => {
   }
 
   // Populate from ENV variables
-  if(!commander.D) {
-    Object.keys(envVariables[STAGE]).map(key => {
+  if (!commander.D) {
+    Object.keys(envVariables[STAGE]).map((key) => {
       const stageKey = `${STAGE}_${key}`.toUpperCase();
       if (process.env[key] || process.env[stageKey]) {
         envVariables[STAGE][key] = process.env[stageKey]
           ? process.env[stageKey]
           : process.env[key];
       }
+
       return true;
     });
   } else {
-    Object.keys(envVariables).map(key => {
+    Object.keys(envVariables).map((key) => {
       const stageKey = `${STAGE}_${key}`.toUpperCase();
       if (process.env[key] || process.env[stageKey]) {
         envVariables[key] = process.env[stageKey]
           ? process.env[stageKey]
           : process.env[key];
       }
+
       return true;
     });
   }
@@ -164,7 +168,7 @@ const loadFile = (filename) => {
     const ymlEnv = YAML.stringify(envVariables);
 
     // Write the YAML to disk so it can be read by sls deploy --stage <STAGE>
-    Fs.writeFile(serverlessEnvFile, ymlEnv, err => {
+    Fs.writeFile(serverlessEnvFile, ymlEnv, (err) => {
       if (err) {
         // eslint-disable-next-line no-console
         console.error(err);
@@ -186,7 +190,6 @@ const loadFile = (filename) => {
         log('error: %O', error);
         console.error(error);
         process.exit(1);
-      })
+      });
   }
-
 })();
